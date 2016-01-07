@@ -14,7 +14,7 @@ char-special-text-region = 40,380,200,30
 
 # Item cards
 
-item-front-template = img/front_bg.png
+item-front-template = img/front_bg.jpg
 item-back-template = img/back.jpg 
 item-portrait-template = img/magic_boots.jpg
 item-portrait-clip-region = 0,70,400,250
