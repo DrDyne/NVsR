@@ -1,0 +1,23 @@
+# Character cards
+
+char-front-template = img/bg_ninja2.jpg
+char-back-template = img/back.jpg
+char-front-overlay = 
+char-portrait-template = img/jl-tanaka.jpg
+char-portrait-clip-region = 0,70,400,250
+
+char-title-region = 8,15,254,30
+char-atk-region = 23,40,150,60
+char-def-region = 23,86,150,60
+char-life-region = 18,136,150,60
+char-special-title-region = 35,350,200,30
+char-special-text-region = 40,380,200,30
+
+# Generic
+gen-sym-atk = img/atk.png
+gen-sym-def = img/def.png
+gen-sym-life = img/life.png
+gen-sym-buy = img/buy.png
+gen-sym-sell = img/sell.png
+
+gen-bg-ability = img/ability_bg.png
