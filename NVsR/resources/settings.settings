@@ -1,8 +1,7 @@
 # Character cards
 
 char-front-template = img/bg_ninja2.jpg
-char-back-template = img/back.jpg
-char-front-overlay = 
+char-back-template = img/back.jpg 
 char-portrait-template = img/jl-tanaka.jpg
 char-portrait-clip-region = 0,70,400,250
 
@@ -12,6 +11,21 @@ char-def-region = 23,86,150,60
 char-life-region = 18,136,150,60
 char-special-title-region = 35,350,200,30
 char-special-text-region = 40,380,200,30
+
+# Item cards
+
+item-front-template = img/front_bg.png
+item-back-template = img/back.jpg 
+item-portrait-template = img/shuriken.png
+item-portrait-clip-region = 0,70,400,250
+item-title-region = 8,15,254,30
+item-atk-region = 23,40,150,60
+item-def-region = 23,86,150,60
+item-buy-region = 340,14,150,60
+item-sell-region = 340,60,150,60
+item-special-title-region = 35,350,200,30
+item-special-text-region = 40,380,200,30
+
 
 # Generic
 gen-sym-atk = img/atk.png

@@ -18,10 +18,10 @@ function create( diy ) {
 	diy.cardVersion = 1;
 	diy.extensionName = 'NVsR.seext';
 	diy.faceStyle = FaceStyle.PLAIN_BACK;
-	diy.frontTemplateKey = 'char-front';
-	diy.backTemplateKey = 'char-back';
+	diy.frontTemplateKey = 'item-front';
+	diy.backTemplateKey = 'item-back';
 
-	diy.portraitKey = 'char';
+	diy.portraitKey = 'item';
 	diy.portraitBackgroundFilled = false;
 	diy.portraitScaleUsesMinimum = true;
 	diy.portraitClipping = false;
@@ -29,9 +29,12 @@ function create( diy ) {
 	// install the example character
 	diy.name = #nvsr-item-name;
 	$Faction = #nvsr-faction;
-	$SpecialText = #nvsr-abilities-text;
+	$SpecialTitle = #nvsr-item-specialtitle;
+	$SpecialText = #nvsr-item-text;
 	$Atk = '1';
-	$Def = '1';
+	$Def = '0';
+	$Buy = '3';
+	$Sell = '2';
 }
 
 function onClear() {
@@ -40,6 +43,8 @@ function onClear() {
 	$SpecialText = '';
 	$Atk = '1';
 	$Def = '1';
+	$Buy = '1';
+	$Sell = '1';
 }
 
 function createInterface( diy, editor ) {
@@ -52,48 +57,25 @@ function createInterface( diy, editor ) {
 	var bkgPanel = new Grid( '', '[min:pref][0:pref,grow,fill][0:pref][0:pref]', '');
 	bkgPanel.setTitle( @nvsr_content );
 	bkgPanel.place( @nvsr_title, '', nameField, 'growx, span, wrap' );
-/*
+
+	var statItems = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
 	// Statistics panel
 	var statsPanel = new Grid( 'center, fillx, insets 0', '[center][center][center][center]' );
-	statsPanel.place(
-		noteLabel(#nvsr_atk), 'gap unrel', noteLabel(#nvsr_def), 'gap unrel',
-				noteLabel(#nvsr_life), 'gap unrel');
+
 				
 	// the $Settings to store the stats in
-	var statSettings = ['Atk', 'Def'];	
+	var statSettings = ['Atk', 'Def', 'Buy', 'Sell'];
+	var statLabels = [#nvsr_atk, #nvsr_def, #nvsr_buy, #nvsr_sell];	
 	// the range of possible values for each stat
-	var statItems = ['0', '1', '2', '3', '4', '5', '6'];
-	for( let i=0; i<2; ++i ) {
+	for( let i=0; i<4; ++i ) {
 		let combo = comboBox( statItems );
-		statsPanel.place( combo, 'growx, width pref+16lp, gap unrel');
+		statsPanel.place( statLabels[i],'' , combo, 'growx, width pref+16lp, gap unrel');
 		bindings.add( statSettings[i], combo, [0] );
 	}
 	
-		let combo_life = comboBox( statItems );
-	bkgPanel.place(noteLabel(#nvsr_life), 'gap unrel');
-	bkgPanel.place( combo_life, 'growx, width pref+16lp, gap unrel');
-	bindings.add( 'Life', combo_life, [0] );
-*/	
-	
-	var statItems = ['0', '1', '2', '3', '4', '5', '6'];
-	let combo_atk = comboBox( statItems );
-	bkgPanel.place(noteLabel(#nvsr_atk), 'gap unrel');
-	bkgPanel.place( combo_atk, 'growx, width pref+16lp, gap unrel');
-	bindings.add( 'Atk', combo_atk, [0] );
-	
-	let combo_def = comboBox( statItems );
-	bkgPanel.place(noteLabel(#nvsr_def), 'gap unrel');
-	bkgPanel.place( combo_def, 'growx, width pref+16lp, gap unrel');
-	bindings.add( 'Def', combo_def, [0] );
-	
-	var lifeValues = ['40', '45', '50', '55', '60'];
-	let combo = comboBox( lifeValues );
-	bkgPanel.place(noteLabel(#nvsr_life), 'gap unrel');
-	bkgPanel.place( combo, 'growx, width pref+16lp, gap unrel, wrap');
-	bindings.add( 'Life', combo, [0] );
-	
 	// add the --- Stats --- divider and panel
-	//bkgPanel.place( statsPanel, 'span, growx, wrap rel' );
+	bkgPanel.place( statsPanel, 'span, growx, wrap rel' );
 	
 	// Special Abilities Title
 	var specialTitleField = textArea( '', 1, 15, false );
@@ -116,8 +98,9 @@ function createFrontPainter( diy, sheet ) {
 
 	if( sheet.sheetIndex == 2 ) return;
 	
-	// the character title (our name field)
+	// the item title (our name field)
 	titleBox = NVsR.titleBox( sheet, true, 13 );
+	titleBox.alignment = titleBox.LAYOUT_LEFT;
 	
 	// the text of the special ability
 	specialTextBox = NVsR.titleBox( sheet, false, 7.5 );	
@@ -145,9 +128,8 @@ function paintFront( g, diy, sheet ) {
 	// Add symbols for life def and atk
 	sheet.paintImage( g, 'gen-sym-atk', 10, 50, 40, 40);
 	sheet.paintImage( g, 'gen-sym-def', 10, 98, 36, 36);
-	sheet.paintImage( g, 'gen-sym-life', 10, 150, 40, 40);
-	//sheet.paintImage( g, 'gen-sym-buy', 320, 20, 50, 40);
-	//sheet.paintImage( g, 'gen-sym-sell', 320, 70, 50, 40);
+	sheet.paintImage( g, 'gen-sym-buy', 320, 20, 50, 40);
+	sheet.paintImage( g, 'gen-sym-sell', 320, 70, 50, 40);
 
 	// Set font color
 	g.setPaint( Color.BLACK );
@@ -155,7 +137,8 @@ function paintFront( g, diy, sheet ) {
 	// draw the stats around the outside
 	paintStat( g, sheet, #nvsr_atk, $Atk, 'atk');
 	paintStat( g, sheet, #nvsr_def, $Def, 'def');
-	paintStat( g, sheet, #nvsr_life, $Life, 'life');
+	paintStat( g, sheet, #nvsr_buy, $Buy, 'buy');
+	paintStat( g, sheet, #nvsr_sell, $Sell, 'sell');
 	
 	// draw the special ability
 	//sheet.drawTitle( g, #nvsr_abilities-title, R('special-title'), NVsR.titleFont, 10, sheet.ALIGN_LEFT );
@@ -186,7 +169,7 @@ function onRead() {}
 function onWrite() {}
 
 function R( nametag ) {
-	var value = $('char-' + nametag + '-region');
+	var value = $('item-' + nametag + '-region');
 	if( value == null ) {
 		throw new Error( 'region not defined: ' + nametag );
 	}
