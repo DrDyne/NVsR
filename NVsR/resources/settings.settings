@@ -10,7 +10,7 @@ char-atk-region = 23,40,150,60
 char-def-region = 23,86,150,60
 char-life-region = 16,136,150,60
 char-special-title-region = 35,350,200,30
-char-special-text-region = 40,380,200,30
+char-special-text-region = 40,380,315,180
 
 # Item cards
 
@@ -24,7 +24,7 @@ item-def-region = 23,86,150,60
 item-buy-region = 340,12,150,60
 item-sell-region = 340,60,150,60
 item-special-title-region = 35,350,200,30
-item-special-text-region = 40,380,200,30
+item-special-text-region = 40,350,315,180
 item-sym-Hands = img/slot_hands.png
 item-sym-Head = img/slot_head.png
 item-sym-Feet = img/slot_feet.png
@@ -38,7 +38,7 @@ action-portrait-clip-region = 0,70,400,250
 
 action-title-region = 8,15,254,30
 action-life-region = 16,136,150,60
-action-special-text-region = 40,380,200,30
+action-special-text-region = 40,350,315,180
 
 # Generic
 gen-sym-atk = img/atk.png

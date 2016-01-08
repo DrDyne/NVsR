@@ -71,7 +71,7 @@ function NVsRObject() {
 		box.headlineAlignment = box.LAYOUT_CENTER;
 		
 		box.lineTightness = 4;
-		box.textFitting = box.FIT_SCALE_TEXT;
+		box.textFitting = box.FIT_NONE;
 		
 		return box;
 	};
