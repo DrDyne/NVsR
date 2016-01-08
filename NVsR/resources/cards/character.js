@@ -132,11 +132,6 @@ function paintFront( g, diy, sheet ) {
 	sheet.paintImage( g, 'gen-sym-atk', 10, 50, 40, 40);
 	sheet.paintImage( g, 'gen-sym-def', 10, 98, 36, 36);
 	sheet.paintImage( g, 'gen-sym-life', 10, 148, 36, 36);
-
-	// Add the faction symbol
-	var faction_key = 'fac-sym-' + $Faction;
-	sheet.paintImage( g, 'fac-sym-bg', 3, 270, 55, 55);
-	sheet.paintImage( g, faction_key, 14, 281, 33, 33);
 	
 	// Set font color
 	g.setPaint( Color.BLACK );
@@ -151,6 +146,11 @@ function paintFront( g, diy, sheet ) {
 	sheet.drawTitle( g, $SpecialTitle, R('special-title'), NVsR.titleFont, 10, sheet.ALIGN_LEFT );
 	specialTextBox.markupText = $SpecialText;
 	specialTextBox.draw( g, R('special-text') );
+	
+	// Add the faction symbol
+	sheet.paintImage( g, 'fac-sym-bg', 3, 270, 55, 55);
+	sheet.paintImage( g, 'fac-sym-' + $Faction, 14, 281, 33, 33);
+	sheet.paintImage( g, 'fac-sym-bg-' + $Faction, 180, 345, 180, 180);
 		
 }
 

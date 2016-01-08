@@ -31,7 +31,7 @@ item-sym-Feet = img/slot_feet.png
 
 # Action cards
 
-action-front-template = img/front_bg.png
+action-front-template = img/front_bg.jpg
 action-back-template = img/back.jpg 
 action-portrait-template = img/LightningBolt.jpg
 action-portrait-clip-region = 0,70,400,250
@@ -46,10 +46,11 @@ gen-sym-def = img/def.png
 gen-sym-life = img/life.png
 gen-sym-buy = img/buy.png
 gen-sym-sell = img/sell.png
-
 gen-bg-ability = img/ability_bg.png
 
 # Factions
 fac-sym-bg = img/fac_bg.png
 fac-sym-Ninjas = img/faction_Ninjas.png
+fac-sym-bg-Ninjas = img/faction_bg_Ninjas.png
 fac-sym-Robots = img/faction_Robots.png
+fac-sym-bg-Robots = img/faction_bg_Robots.png

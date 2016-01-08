@@ -30,7 +30,7 @@ function create( diy ) {
 	diy.name = #nvsr-item-name;
 	$Faction = #nvsr-faction;
 	$Slot = #nvsr-item-slot;
-	$SpecialTitle = #nvsr-item-specialtitle;
+	//$SpecialTitle = #nvsr-item-specialtitle;
 	$SpecialText = #nvsr-item-text;
 	$Atk = '1';
 	$Def = '0';
@@ -41,7 +41,7 @@ function create( diy ) {
 function onClear() {
 	$Faction = '';
 	$Slot = '';
-	$SpecialTitle = '';
+	//$SpecialTitle = '';
 	$SpecialText = '';
 	$Atk = '1';
 	$Def = '1';
@@ -87,11 +87,12 @@ function createInterface( diy, editor ) {
 	// add the --- Stats --- divider and panel
 	bkgPanel.place( statsPanel, 'span' );
 	
-	// Special Abilities Title
+	/* Special Abilities Title
 	var specialTitleField = textArea( '', 1, 15, false );
 	bkgPanel.place( 'Ability Title :', 'span, wrap' );
 	bkgPanel.place( specialTitleField, 'span, gap para, growx, wrap' );
 	bindings.add( 'SpecialTitle', specialTitleField, [0] );
+	*/
 	
 	// Special Abilities Text
 	var specialTextField = textArea( '', 17, 15, true );
@@ -131,10 +132,7 @@ function paintFront( g, diy, sheet ) {
 	
 	// Item picture
 	sheet.paintPortrait( g );
-	
-	// Ability zone background
-	sheet.paintImage( g, 'gen-bg-ability', 16, 330);
-	
+		
 	// Add symbols
 	sheet.paintImage( g, 'gen-sym-atk', 10, 50, 40, 40);
 	sheet.paintImage( g, 'gen-sym-def', 10, 98, 36, 36);
@@ -145,11 +143,6 @@ function paintFront( g, diy, sheet ) {
 	var slot_key = 'item-sym-' + $Slot;
 	sheet.paintImage( g, slot_key, 10, 148, 36, 36);
 	
-	// Add the faction symbol
-	var faction_key = 'fac-sym-' + $Faction;
-	sheet.paintImage( g, 'fac-sym-bg', 3, 270, 55, 55);
-	sheet.paintImage( g, faction_key, 14, 281, 33, 33);
-
 	// Set font color
 	g.setPaint( Color.BLACK );
 
@@ -160,10 +153,17 @@ function paintFront( g, diy, sheet ) {
 	paintStat( g, sheet, #nvsr_sell, $Sell, 'sell');
 	
 	// draw the special ability
+	// Ability zone background
+	sheet.paintImage( g, 'gen-bg-ability', 16, 330);
 	//sheet.drawTitle( g, #nvsr_abilities-title, R('special-title'), NVsR.titleFont, 10, sheet.ALIGN_LEFT );
-	sheet.drawTitle( g, $SpecialTitle, R('special-title'), NVsR.titleFont, 10, sheet.ALIGN_LEFT );
+	//sheet.drawTitle( g, $SpecialTitle, R('special-title'), NVsR.titleFont, 10, sheet.ALIGN_LEFT );
 	specialTextBox.markupText = $SpecialText;
 	specialTextBox.draw( g, R('special-text') );
+	
+	// Add the faction symbol
+	sheet.paintImage( g, 'fac-sym-bg', 3, 270, 55, 55);
+	sheet.paintImage( g, 'fac-sym-' + $Faction, 14, 281, 33, 33);
+	sheet.paintImage( g, 'fac-sym-bg-' + $Faction, 180, 345, 180, 180);
 		
 }
 
