@@ -1,5 +1,3 @@
-/*
-
 Petit recap du projet :
 
 !!! resources/examples et resources/talisman sont juste des examples et ne sont pas utilis\u00e9s pour le projet donc pourront etre vir\u00e9s a terme.
@@ -20,4 +18,3 @@ resources/
 	settings.settings : En gros des key value de config genre images et coordonn\u00e9es (certainement mal nomm\u00e9)
 	test-lib.js : Utilis\u00e9 quand on fait un Run sur resources/cards/character.js
 	
-*/

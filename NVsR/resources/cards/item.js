@@ -29,6 +29,7 @@ function create( diy ) {
 	// install the example character
 	diy.name = #nvsr-item-name;
 	$Faction = #nvsr-faction;
+	$Slot = #nvsr-item-slot;
 	$SpecialTitle = #nvsr-item-specialtitle;
 	$SpecialText = #nvsr-item-text;
 	$Atk = '1';
@@ -39,6 +40,7 @@ function create( diy ) {
 
 function onClear() {
 	$Faction = '';
+	$Slot = '';
 	$SpecialTitle = '';
 	$SpecialText = '';
 	$Atk = '1';
@@ -58,12 +60,21 @@ function createInterface( diy, editor ) {
 	bkgPanel.setTitle( @nvsr_content );
 	bkgPanel.place( @nvsr_title, '', nameField, 'growx, span, wrap' );
 
+	// Faction
+	var factions = ['Ninjas', 'Robots'];
+	let combo_faction = comboBox( factions );
+	bkgPanel.place( 'Faction', '', combo_faction, 'span');
+	bindings.add( 'Faction', combo_faction, [0] );
+
+	// Slot
+	var slots = ['Hands', 'Head', 'Feet'];
+	let combo_slot = comboBox( slots );
+	bkgPanel.place( 'Slot', '', combo_slot, 'span');
+	bindings.add( 'Slot', combo_slot, [0] );
+
+	// Stats
 	var statItems = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-
-	// Statistics panel
 	var statsPanel = new Grid( 'center, fillx, insets 0', '[center][center][center][center]' );
-
-				
 	// the $Settings to store the stats in
 	var statSettings = ['Atk', 'Def', 'Buy', 'Sell'];
 	var statLabels = [#nvsr_atk, #nvsr_def, #nvsr_buy, #nvsr_sell];	
@@ -73,9 +84,8 @@ function createInterface( diy, editor ) {
 		statsPanel.place( statLabels[i],'' , combo, 'growx, width pref+16lp, gap unrel');
 		bindings.add( statSettings[i], combo, [0] );
 	}
-	
 	// add the --- Stats --- divider and panel
-	bkgPanel.place( statsPanel, 'span, growx, wrap rel' );
+	bkgPanel.place( statsPanel, 'span' );
 	
 	// Special Abilities Title
 	var specialTitleField = textArea( '', 1, 15, false );
@@ -115,26 +125,35 @@ function paintFront( g, diy, sheet ) {
 	// Background
 	sheet.paintTemplateImage( g );
 
-	// Name of the character
+	// Name of the item
 	titleBox.markupText = diy.name;
 	titleBox.drawAsSingleLine( g, R('title') );
 	
-	// Character portrait
+	// Item picture
 	sheet.paintPortrait( g );
 	
 	// Ability zone background
 	sheet.paintImage( g, 'gen-bg-ability', 16, 330);
 	
-	// Add symbols for life def and atk
+	// Add symbols
 	sheet.paintImage( g, 'gen-sym-atk', 10, 50, 40, 40);
 	sheet.paintImage( g, 'gen-sym-def', 10, 98, 36, 36);
-	sheet.paintImage( g, 'gen-sym-buy', 320, 20, 50, 40);
-	sheet.paintImage( g, 'gen-sym-sell', 320, 70, 50, 40);
+	sheet.paintImage( g, 'gen-sym-buy', 326, 22, 38, 38);
+	sheet.paintImage( g, 'gen-sym-sell', 326, 71, 38, 38);
+
+	// Add the slot symbol
+	var slot_key = 'item-sym-' + $Slot;
+	sheet.paintImage( g, slot_key, 10, 148, 36, 36);
+	
+	// Add the faction symbol
+	var faction_key = 'fac-sym-' + $Faction;
+	sheet.paintImage( g, 'fac-sym-bg', 3, 270, 55, 55);
+	sheet.paintImage( g, faction_key, 14, 281, 33, 33);
 
 	// Set font color
 	g.setPaint( Color.BLACK );
 
-	// draw the stats around the outside
+	// Add the stats values
 	paintStat( g, sheet, #nvsr_atk, $Atk, 'atk');
 	paintStat( g, sheet, #nvsr_def, $Def, 'def');
 	paintStat( g, sheet, #nvsr_buy, $Buy, 'buy');
@@ -174,6 +193,12 @@ function R( nametag ) {
 		throw new Error( 'region not defined: ' + nametag );
 	}
 	return new Region( value );
+}
+
+function getFactions() {
+	// $files = file_scan_directory('img/', '/.faction_*\.png$/ig');
+	$files = file_scan_directory('.', '/.*\.*$/');
+	return files;
 }
 
 testDIYScript( 'NVsR' );
