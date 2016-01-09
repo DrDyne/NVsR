@@ -18,11 +18,8 @@ function initialize() {
 		const NVsR = Eons.namedObjects.NVsR;
 
 		// register NVsR as a game supported by Strange Eons
-		registerGame();
-		//registerOfficialExpansions();
-		
+		Game.register('NVsR', @nvsr_game, ImageUtils.get( 'img/icon.png' ));
 		Game.get( 'NVsR' ).masterSettings.addSettingsFrom( 'settings.settings' );
-		
 		ClassMap.add( 'base.classmap' );
 
 	} catch( ex ) {
@@ -43,16 +40,4 @@ function getDescription() {
 
 function getVersion() {
     return 1.0;
-}
-
-function registerGame() {
-	var est = new AbstractExpansionSymbolTemplate() {};
-	return Game.register('NVsR', @nvsr_game, ImageUtils.get( 'img/icon.png' ));
-}
-
-function registerOfficialExpansions() {
-	// this script contains the actual registration code;
-	// it is in a separate library because we also register
-	// expansions during testing
-	//useLibrary( 'res://resources/register-exps.js' );
 }

@@ -1,7 +1,7 @@
 #WARNING:
 #If this file is deleted then this folder will no
 #longer appear to be a project/task in Strange Eons.
-#Fri Jan 08 23:58:34 EST 2016
+#Sat Jan 09 14:12:22 EST 2016
 type=PLUGIN
 clean-ext=class
 bundle-file=NVsR.seext

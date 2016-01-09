@@ -53,7 +53,7 @@ function createInterface( diy, editor ) {
 	bkgPanel.place( @nvsr_title, '', nameField, 'growx, span, wrap' );
 
 	// Faction
-	var factions = ['Ninjas', 'Robots'];
+	var factions = ['Neutral', 'Ninjas', 'Robots'];
 	let combo_faction = comboBox( factions );
 	bkgPanel.place( 'Faction', '', combo_faction, 'span');
 	bindings.add( 'Faction', combo_faction, [0] );
@@ -131,10 +131,11 @@ function paintFront( g, diy, sheet ) {
 	specialTextBox.draw( g, R('special-text') );
 	
 	// Add the faction symbol
-	sheet.paintImage( g, 'fac-sym-bg', 3, 270, 55, 55);
-	sheet.paintImage( g, 'fac-sym-' + $Faction, 14, 281, 33, 33);
-	sheet.paintImage( g, 'fac-sym-bg-' + $Faction, 180, 345, 180, 180);
-		
+	if ( $Faction != 'Neutral' ) {
+		sheet.paintImage( g, 'fac-sym-bg', 3, 270, 55, 55);
+		sheet.paintImage( g, 'fac-sym-' + $Faction, 14, 281, 33, 33);
+		sheet.paintImage( g, 'fac-sym-bg-' + $Faction, 180, 345, 180, 180);	
+	}
 }
 
 function paintStat( g, sheet, stat, value, region) {
