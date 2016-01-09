@@ -1,10 +1,26 @@
-id = CATALOGUEID{11556d0b-835a-4e9b-92bc-30f5274f9f7e:2016-0-8-1-30-39-533}
+#
+# An eons-plugin file lists one or more plug-ins that are included in
+# a plug-in bundle (.seplugin or .seext), or the theme class in a
+# theme bundle (.setheme). It is not required for a library bundle,
+# but can be included to specify a name, version, or icon. It can
+# also specify details of the bundle's catalog description.
+#
+# Examples:
+#
+# Load a plug-in from the named script file:
+# res://example/myplugin/myplugin.js
+#
+# Load a plug-in from the named class:
+# org.examples.strangeeons.MyPlugin
+#
+# For details see the "Plug-in Root File" Wiki page .
+#
 
-priority = EXPANSION
-installer = res://nvsr.js
+id = CATALOGUEID{6886015b-3666-41be-98a5-190b7f3dd164:2016-0-9-4-58-26-33}
+
+priority = GAME
 
 catalog-name = Ninja Vs Robots
-catalog-credit = Olivier Gonson - Rémy Chaumard
-catalog-description = Game components for Ninja Vs Robots card game
+catalog-credit = Olivier Gonson - Rémy chaumard
 
-res://nvsr.js
+res://plugin.js

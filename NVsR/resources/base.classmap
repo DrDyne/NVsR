@@ -1,0 +1,8 @@
+@cat-characters
+    Character = diy:cards/character.js | img/icon_char.png | NVsR
+
+@cat-actions
+    Action = diy:cards/action.js | img/icon_action.png | NVsR
+    
+@cat-items
+    Item = diy:cards/item.js | img/icon_item.png | NVsR
