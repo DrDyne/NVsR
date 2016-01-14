@@ -2,8 +2,8 @@
 
 char-front-template = img/front2s.jpg
 char-back-template = img/back2s.jpg
-char-portrait-template = img/portraits/jl-tanaka.jpg
-char-portrait-clip-region = 0,70,400,250
+char-portrait-template = img/portraits/jl-tanaka2s.jpg
+char-portrait-clip-region = 0,85,400,560
 
 char-title-region = 8,15,254,30
 char-atk-region = 23,40,150,60
@@ -46,7 +46,7 @@ gen-sym-def = img/sym_def.png
 gen-sym-life = img/sym_life.png
 gen-sym-buy = img/sym_buy.png
 gen-sym-sell = img/sym_sell.png
-gen-bg-ability = img/ability_bg.png
+gen-bg-ability = img/bg_ability.png
 
 # Factions
 fac-sym-bg = img/fac_bg.png

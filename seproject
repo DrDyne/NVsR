@@ -1,10 +1,10 @@
 #WARNING:
 #If this file is deleted then this folder will no
 #longer appear to be a project/task in Strange Eons.
-#Sat Jan 09 14:12:22 EST 2016
+#Thu Jan 14 00:01:53 EST 2016
 first-row=0
-open-folders=\:NVsR\:NVsR/resources\:NVsR/resources/cards\:Neutral deck
+open-folders=\:NVsR\:NVsR/resources\:NVsR/resources/cards\:Neutral deck\:Neutral deck/Actions
 res-id=olivier
 notes=
 type=PROJECT
-selected-members=\:Neutral deck/portraits
+selected-members=\:Neutral deck/Starter_Deck.eon

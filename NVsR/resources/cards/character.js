@@ -22,8 +22,8 @@ function create( diy ) {
 	diy.backTemplateKey = 'char-back';
 
 	diy.portraitKey = 'char';
-	diy.portraitBackgroundFilled = false;
-	diy.portraitScaleUsesMinimum = true;
+	diy.portraitBackgroundFilled = true;
+	diy.portraitScaleUsesMinimum = false;
 	diy.portraitClipping = false;
 	
 	// install the example character
@@ -118,12 +118,13 @@ function paintFront( g, diy, sheet ) {
 	// Background
 	sheet.paintTemplateImage( g );
 
-	// Name of the character
-	titleBox.markupText = diy.name;
-	titleBox.drawAsSingleLine( g, R('title') );
 	
 	// Character portrait
 	sheet.paintPortrait( g );
+	
+	// Name of the character
+	titleBox.markupText = diy.name;
+	titleBox.drawAsSingleLine( g, R('title') );
 	
 	// Ability zone background
 	sheet.paintImage( g, 'gen-bg-ability', 16, 330);
@@ -133,6 +134,12 @@ function paintFront( g, diy, sheet ) {
 	sheet.paintImage( g, 'gen-sym-def', 10, 98, 36, 36);
 	sheet.paintImage( g, 'gen-sym-life', 10, 148, 36, 36);
 	
+	// draw the special ability
+	//sheet.drawTitle( g, #nvsr_abilities-title, R('special-title'), NVsR.titleFont, 10, sheet.ALIGN_LEFT );
+	sheet.drawTitle( g, $SpecialTitle, R('special-title'), NVsR.titleFont, 10, sheet.ALIGN_LEFT );
+	specialTextBox.markupText = $SpecialText;
+	specialTextBox.draw( g, R('special-text') );
+	
 	// Set font color
 	g.setPaint( Color.BLACK );
 
@@ -140,12 +147,6 @@ function paintFront( g, diy, sheet ) {
 	paintStat( g, sheet, #nvsr_atk, $Atk, 'atk');
 	paintStat( g, sheet, #nvsr_def, $Def, 'def');
 	paintStat( g, sheet, #nvsr_life, $Life, 'life');
-	
-	// draw the special ability
-	//sheet.drawTitle( g, #nvsr_abilities-title, R('special-title'), NVsR.titleFont, 10, sheet.ALIGN_LEFT );
-	sheet.drawTitle( g, $SpecialTitle, R('special-title'), NVsR.titleFont, 10, sheet.ALIGN_LEFT );
-	specialTextBox.markupText = $SpecialText;
-	specialTextBox.draw( g, R('special-text') );
 	
 	// Add the faction symbol
 	sheet.paintImage( g, 'fac-sym-bg', 3, 270, 55, 55);
