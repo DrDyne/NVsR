@@ -89,11 +89,11 @@ function createFrontPainter( diy, sheet ) {
 	if( sheet.sheetIndex == 2 ) return;
 	
 	// the item title (our name field)
-	titleBox = NVsR.titleBox( sheet, true, 13 );
-	titleBox.alignment = titleBox.LAYOUT_LEFT;
+	titleBox = NVsR.titleBox( sheet, true, 36 );
+	titleBox.alignment = titleBox.LAYOUT_CENTER|titleBox.LAYOUT_MIDDLE;
 	
 	// the text of the special ability
-	specialTextBox = NVsR.titleBox( sheet, false, 7.5 );	
+	specialTextBox = NVsR.titleBox( sheet, false, 8 );	
 	specialTextBox.lineTightness = 1.5;
 	specialTextBox.alignment = specialTextBox.LAYOUT_TOP|specialTextBox.LAYOUT_LEFT;
 
@@ -113,11 +113,11 @@ function paintFront( g, diy, sheet ) {
 	sheet.paintPortrait( g );
 	
 	// Ability zone background
-	sheet.paintImage( g, 'gen-bg-ability', 16, 330);
+	sheet.paintImage( g, 'gen-bg-ability', 30, 680, 690, 340);
 	
 	// Add symbols
-	sheet.paintImage( g, 'gen-sym-buy', 326, 22, 38, 38);
-	sheet.paintImage( g, 'gen-sym-sell', 326, 71, 38, 38);
+	sheet.paintImage( g, 'gen-sym-buy', 640, 40, 90, 90);
+	sheet.paintImage( g, 'gen-sym-sell', 640, 160, 90, 90);
 
 	// Set font color
 	g.setPaint( Color.BLACK );
@@ -132,9 +132,9 @@ function paintFront( g, diy, sheet ) {
 	
 	// Add the faction symbol
 	if ( $Faction != 'Neutral' ) {
-		sheet.paintImage( g, 'fac-sym-bg', 3, 270, 55, 55);
-		sheet.paintImage( g, 'fac-sym-' + $Faction, 14, 281, 33, 33);
-		sheet.paintImage( g, 'fac-sym-bg-' + $Faction, 180, 345, 180, 180);	
+		sheet.paintImage( g, 'fac-sym-bg', 15, 550, 100, 100);
+		sheet.paintImage( g, 'fac-sym-' + $Faction, 33, 568, 62, 62);
+		sheet.paintImage( g, 'fac-sym-bg-' + $Faction, 370, 710, 280, 280);	
 	}
 }
 
@@ -142,7 +142,7 @@ function paintStat( g, sheet, stat, value, region) {
 	if( value != null ) {
 		stat = sprintf( #nvsr_stat_format, value );
 	}
-	sheet.drawTitle ( g, stat, R(region), NVsR.titleFont, 10, sheet.ALIGN_LEFT );
+	sheet.drawTitle ( g, stat, R(region), NVsR.titleFont, 14, sheet.ALIGN_CENTER );
 }
 
 function paintMarker( g, sheet ) {
@@ -159,7 +159,7 @@ function onRead() {}
 function onWrite() {}
 
 function R( nametag ) {
-	var value = $('item-' + nametag + '-region');
+	var value = $('action-' + nametag + '-region');
 	if( value == null ) {
 		throw new Error( 'region not defined: ' + nametag );
 	}
